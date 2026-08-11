@@ -13,9 +13,7 @@
 
 ## Descrição do desafio
 
-_(Resuma aqui, com suas palavras, o desafio: uma equipe de desenvolvimento recebeu a demanda de
-construir um sistema de gestão de pedidos para um e-commerce, contemplando cadastro de produtos,
-clientes, pedidos e processamento de pagamentos.)_
+_(O desafio é desenvolver um sistema para gerenciar um e-commerce, permitindo o cadastro de produtos e clientes, a realização de pedidos e o processamento dos pagamentos.)_
 
 ## Funcionalidades previstas
 
