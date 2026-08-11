@@ -83,9 +83,9 @@ _(Preencher a partir das próximas aulas, conforme o projeto evoluir.)_
 
 ## Combinado da equipe (ética e convivência)
 
-1. _(regra 1 definida pela equipe)_
-2. _(regra 2 definida pela equipe)_
-3. _(regra 3 definida pela equipe)_
+1. _(Respeitar um ao outro)_
+2. _(Dividir as tarefas de forma justa)_
+3. _(Manter uma boa comunicação)_
 
 ## Licença
 
