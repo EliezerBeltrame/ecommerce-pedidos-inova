@@ -9,7 +9,7 @@
 |---|---|
 | _(Eliezer Beltrame)_ | Responsável do dia |
 | _(Gabriel Lima)_ | |
-| _(nome do integrante 3)_ | |
+| _(nome do integrante )_ | |
 | _(nome do integrante 4)_ | |
 
 ## Descrição do desafio
