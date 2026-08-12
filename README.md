@@ -27,12 +27,12 @@ _(O desafio é desenvolver um sistema para gerenciar um e-commerce, permitindo o
 
 ## Divisão De Tarefas
 -  Cadastro e gerenciamento de produtos [Gabriel]
--  Cadastro e gerenciamento de clientes [Elizer]
--  Criação e gerenciamento de pedidos [Elizer]
+-  Cadastro e gerenciamento de clientes [Eliezer]
+-  Criação e gerenciamento de pedidos [Eliezer]
 -  Processamento de pagamentos (cartão, boleto, Pix) [Gabriel]
 -  Testes automatizados (unitários e de integração) [Gabriel]
 -  Pipeline de CI/CD [Gabriel]
--  API REST para consumo por um front-end [Elizer]
+-  API REST para consumo por um front-end [Eliezer]
 
 
 ## Tecnologias
