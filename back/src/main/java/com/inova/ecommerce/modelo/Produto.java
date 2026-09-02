@@ -22,14 +22,37 @@ public class Produto {
         return ativo && this.quantidadeEmEstoque >= quantidadeDesejada;
     }
 
-    @Override 
-    public String toString() {
-        return String.format("[%s] %s - %s - R$ %.2f (%d em estoque)", 
-                this.codigo, this.nome, this.descricao, this.preco, this.quantidadeEmEstoque);
-    }
-
     public void baixarEstoque(int quantidade) {
         this.quantidadeEmEstoque = this.quantidadeEmEstoque - quantidade;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getQuantidadeEmEstoque() {
+        return quantidadeEmEstoque;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %s - %s - R$ %.2f (%d em estoque)",
+                this.codigo, this.nome, this.descricao, this.preco, this.quantidadeEmEstoque);
+    }
 }
