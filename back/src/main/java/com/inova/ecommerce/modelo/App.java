@@ -1,12 +1,30 @@
 package com.inova.ecommerce;
 
 import com.inova.ecommerce.modelo.Produto;
+import com.inova.ecommerce.modelo.pagamento.Boleto;
+import com.inova.ecommerce.modelo.pagamento.CartaoCredito;
+import com.inova.ecommerce.modelo.pagamento.FormaPagamento;
+import com.inova.ecommerce.modelo.pagamento.Pix;
 
 public class App {
 
     public static void main(String[] args) {
-        Produto teclado = new Produto("TEC-001", "Teclatek", "Teclado da bolivia", 2000.00, 10);
-        Produto monitor = new Produto("TEC-002", "Monitek", "Monitor 30pol", 2000.00, 10);
+
+        Produto teclado = new Produto(
+                "TEC-001",
+                "Teclatek",
+                "Teclado da bolivia",
+                2000.00,
+                10
+        );
+
+        Produto monitor = new Produto(
+                "TEC-002",
+                "Monitek",
+                "Monitor 30pol",
+                2000.00,
+                10
+        );
 
         System.out.println(teclado);
         System.out.println(monitor);
@@ -16,5 +34,14 @@ public class App {
 
         teclado.baixarEstoque(1500);
         System.out.println(teclado);
+
+        // Testando formas de pagamento
+        FormaPagamento pix = new Pix();
+        FormaPagamento cartao = new CartaoCredito();
+        FormaPagamento boleto = new Boleto();
+
+        pix.pagar(2000.00);
+        cartao.pagar(2000.00);
+        boleto.pagar(2000.00);
     }
 }
