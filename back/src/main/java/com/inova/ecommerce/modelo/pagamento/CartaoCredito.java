@@ -1,6 +1,6 @@
 package com.inova.ecommerce.modelo.pagamento;
 
-public class CartaoCredito implements FormaPagamento {
+public class CartaoCredito extends FormaPagamento {
 
     @Override
     public void pagar(double valor) {

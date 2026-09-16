@@ -24,8 +24,11 @@ public class ItemPedido {
 
     private void setProduto(Produto produto) {
         if (produto == null) {
-            throw new IllegalArgumentException("Produto é obrigatório no item do pedido");
+            throw new IllegalArgumentException(
+                "Produto é obrigatório no item do pedido"
+            );
         }
+
         this.produto = produto;
     }
 
@@ -34,9 +37,13 @@ public class ItemPedido {
     }
 
     public void setQuantidade(int quantidade) {
+
         if (quantidade <= 0) {
-            throw new IllegalArgumentException("Quantidade deve ser maior que zero: " + quantidade);
+            throw new IllegalArgumentException(
+                "Quantidade deve ser maior que zero: " + quantidade
+            );
         }
+
         this.quantidade = quantidade;
     }
 
@@ -45,9 +52,13 @@ public class ItemPedido {
     }
 
     public void setPreco(BigDecimal preco) {
+
         if (preco == null || preco.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Preço do item não pode ser negativo");
+            throw new IllegalArgumentException(
+                "Preço do item não pode ser negativo"
+            );
         }
+
         this.preco = preco;
     }
 

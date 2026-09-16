@@ -1,7 +1,7 @@
 package com.inova.ecommerce.modelo.pagamento;
 
-public interface FormaPagamento {
+public abstract class FormaPagamento {
 
-    void pagar(double valor);
+    public abstract void pagar(double valor);
 
 }
