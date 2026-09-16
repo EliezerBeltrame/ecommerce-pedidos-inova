@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.inova.ecommerce.modelo.pagamento.FormaPagamento;
+
 public class Pedido {
 
     private String numero;
     private Cliente cliente;
-    private List<ItemPedido> itens = new ArrayList<>();
+    private final List<ItemPedido> itens = new ArrayList<>();
+    private FormaPagamento formaPagamento;
 
     public Pedido(String numero, Cliente cliente) {
         setNumero(numero);
@@ -39,22 +42,57 @@ public class Pedido {
     }
 
     public List<ItemPedido> getItens() {
-        // Cópia somente leitura para evitar vazamento do encapsulamento da lista
         return Collections.unmodifiableList(itens);
     }
 
-    public void adicionarItem(ItemPedido item) {
-        if (item == null) {
-            throw new IllegalArgumentException("Item não pode ser nulo");
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void adicionarItem(Produto produto, int quantidade) {
+
+        if (produto == null) {
+            throw new IllegalArgumentException("Produto é obrigatório");
         }
-        this.itens.add(item);
+
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+        }
+
+        if (quantidade > produto.getQuantidadeEmEstoque()) {
+            throw new IllegalStateException(
+                "Estoque insuficiente: " + produto.getNome()
+            );
+        }
+
+        itens.add(
+            new ItemPedido(
+                produto,
+                quantidade,
+                produto.getPreco()
+            )
+        );
+    }
+
+    public void pagarCom(FormaPagamento formaPagamento) {
+
+        if (itens.isEmpty()) {
+            throw new IllegalStateException(
+                "Pedido sem itens não pode ser pago"
+            );
+        }
+
+        this.formaPagamento = formaPagamento;
     }
 
     public BigDecimal calcularValorTotal() {
+
         BigDecimal total = BigDecimal.ZERO;
+
         for (ItemPedido item : itens) {
             total = total.add(item.calcularSubtotal());
         }
+
         return total;
     }
 }

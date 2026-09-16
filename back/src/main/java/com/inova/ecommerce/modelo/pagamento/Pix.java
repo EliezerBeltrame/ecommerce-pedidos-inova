@@ -1,6 +1,6 @@
 package com.inova.ecommerce.modelo.pagamento;
 
-public class Pix implements FormaPagamento {
+public class Pix extends FormaPagamento {
 
     @Override
     public void pagar(double valor) {

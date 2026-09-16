@@ -1,8 +1,6 @@
-```java
 package com.inova.ecommerce;
 
 import com.inova.ecommerce.modelo.Cliente;
-import com.inova.ecommerce.modelo.ItemPedido;
 import com.inova.ecommerce.modelo.Pedido;
 import com.inova.ecommerce.modelo.Produto;
 
@@ -34,37 +32,27 @@ public class App {
                 "Rua das Flores, 100"
         );
 
-        ItemPedido itemTeclado = new ItemPedido(
-                teclado,
-                2,
-                teclado.getPreco()
-        );
-
-        ItemPedido itemMonitor = new ItemPedido(
-                monitor,
-                1,
-                monitor.getPreco()
-        );
-
         Pedido pedido = new Pedido(
                 "PED-001",
                 cliente
         );
 
-        pedido.adicionarItem(itemTeclado);
-        pedido.adicionarItem(itemMonitor);
+        pedido.adicionarItem(teclado, 2);
+        pedido.adicionarItem(monitor, 1);
 
         System.out.println("=== PEDIDO ===");
         System.out.println("Cliente: " + cliente.getIdentificacao());
 
         System.out.println("\nItens:");
-        System.out.println(itemTeclado);
-        System.out.println("Subtotal: R$ " + itemTeclado.calcularSubtotal());
 
-        System.out.println(itemMonitor);
-        System.out.println("Subtotal: R$ " + itemMonitor.calcularSubtotal());
+        pedido.getItens().forEach(item -> {
+            System.out.println("Produto: " + item.getProduto().getNome());
+            System.out.println("Quantidade: " + item.getQuantidade());
+            System.out.println("Preço: R$ " + item.getPreco());
+            System.out.println("Subtotal: R$ " + item.calcularSubtotal());
+            System.out.println();
+        });
 
-        System.out.println("\nTotal do pedido: R$ " + pedido.calcularValorTotal());
+        System.out.println("Total do pedido: R$ " + pedido.calcularValorTotal());
     }
 }
-```
