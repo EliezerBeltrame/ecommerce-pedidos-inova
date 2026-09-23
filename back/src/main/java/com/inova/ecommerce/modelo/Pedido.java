@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.inova.ecommerce.modelo.pagamento.FormaPagamento;
+import com.inova.ecommerce.modelo.pagamento.ProcessadorPagamento;
 
 public class Pedido {
 
@@ -13,6 +14,9 @@ public class Pedido {
     private Cliente cliente;
     private final List<ItemPedido> itens = new ArrayList<>();
     private FormaPagamento formaPagamento;
+
+    private SituacaoDoPedido situacao = SituacaoDoPedido.ABERTO;
+    private String comprovante;
 
     public Pedido(String numero, Cliente cliente) {
         setNumero(numero);
@@ -25,8 +29,11 @@ public class Pedido {
 
     private void setNumero(String numero) {
         if (numero == null || numero.isBlank()) {
-            throw new IllegalArgumentException("Número do pedido é obrigatório");
+            throw new IllegalArgumentException(
+                "Número do pedido é obrigatório"
+            );
         }
+
         this.numero = numero.trim();
     }
 
@@ -36,8 +43,11 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         if (cliente == null) {
-            throw new IllegalArgumentException("Cliente é obrigatório no pedido");
+            throw new IllegalArgumentException(
+                "Cliente é obrigatório no pedido"
+            );
         }
+
         this.cliente = cliente;
     }
 
@@ -49,14 +59,26 @@ public class Pedido {
         return formaPagamento;
     }
 
+    public SituacaoDoPedido getSituacao() {
+        return situacao;
+    }
+
+    public String getComprovante() {
+        return comprovante;
+    }
+
     public void adicionarItem(Produto produto, int quantidade) {
 
         if (produto == null) {
-            throw new IllegalArgumentException("Produto é obrigatório");
+            throw new IllegalArgumentException(
+                "Produto é obrigatório"
+            );
         }
 
         if (quantidade <= 0) {
-            throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+            throw new IllegalArgumentException(
+                "Quantidade deve ser maior que zero"
+            );
         }
 
         if (quantidade > produto.getQuantidadeEmEstoque()) {
@@ -74,7 +96,17 @@ public class Pedido {
         );
     }
 
-    public void pagarCom(FormaPagamento formaPagamento) {
+    public void adicionarItem(Produto produto) {
+        adicionarItem(produto, 1);
+    }
+
+    public boolean pagar(ProcessadorPagamento processador) {
+
+        if (processador == null) {
+            throw new IllegalArgumentException(
+                "Forma de pagamento é obrigatória"
+            );
+        }
 
         if (itens.isEmpty()) {
             throw new IllegalStateException(
@@ -82,7 +114,16 @@ public class Pedido {
             );
         }
 
-        this.formaPagamento = formaPagamento;
+        boolean aprovado = processador.processar(
+            calcularValorTotal()
+        );
+
+        if (aprovado) {
+            this.situacao = SituacaoDoPedido.PAGO;
+            this.comprovante = processador.getComprovante();
+        }
+
+        return aprovado;
     }
 
     public BigDecimal calcularValorTotal() {
