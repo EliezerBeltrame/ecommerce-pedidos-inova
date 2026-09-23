@@ -1,8 +1,15 @@
 package com.inova.ecommerce;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import com.inova.ecommerce.modelo.Cliente;
 import com.inova.ecommerce.modelo.Pedido;
 import com.inova.ecommerce.modelo.Produto;
+import com.inova.ecommerce.modelo.pagamento.Boleto;
+import com.inova.ecommerce.modelo.pagamento.CartaoCredito;
+import com.inova.ecommerce.modelo.pagamento.Dinheiro;
+import com.inova.ecommerce.modelo.pagamento.Pix;
 
 public class App {
 
@@ -11,16 +18,14 @@ public class App {
         Produto teclado = new Produto(
                 "TEC-001",
                 "Teclatek",
-                "Teclado da bolivia",
-                2000.00,
+                new BigDecimal("2000.00"),
                 10
         );
 
         Produto monitor = new Produto(
                 "MON-002",
                 "Monitek",
-                "Monitor 30pol",
-                2000.00,
+                new BigDecimal("2000.00"),
                 10
         );
 
@@ -53,6 +58,55 @@ public class App {
             System.out.println();
         });
 
-        System.out.println("Total do pedido: R$ " + pedido.calcularValorTotal());
+        System.out.println(
+                "Total do pedido: R$ " + pedido.calcularValorTotal()
+        );
+
+        System.out.println("\n=== PAGAMENTO ===");
+
+        // Pix
+        Pix pix = new Pix("pix@email.com");
+
+        boolean pagoPix = pedido.pagar(pix);
+
+        System.out.println("Pagamento aprovado: " + pagoPix);
+        System.out.println("Situação: " + pedido.getSituacao());
+        System.out.println("Comprovante: " + pedido.getComprovante());
+
+        // Cartão de crédito
+        CartaoCredito cartao = new CartaoCredito(
+                new BigDecimal("6000.00"),
+                "**** 1234",
+                3
+        );
+
+        boolean pagoCartao = pedido.pagar(cartao);
+
+        System.out.println("Pagamento cartão aprovado: " + pagoCartao);
+        System.out.println("Situação: " + pedido.getSituacao());
+        System.out.println("Comprovante: " + pedido.getComprovante());
+
+        // Boleto
+        Boleto boleto = new Boleto(
+                new BigDecimal("6000.00"),
+                LocalDate.now().plusDays(3)
+        );
+
+        boolean pagoBoleto = pedido.pagar(boleto);
+
+        System.out.println("Pagamento boleto aprovado: " + pagoBoleto);
+        System.out.println("Situação: " + pedido.getSituacao());
+        System.out.println("Comprovante: " + pedido.getComprovante());
+
+        // Dinheiro
+        Dinheiro dinheiro = new Dinheiro(
+                new BigDecimal("7000.00")
+        );
+
+        boolean pagoDinheiro = pedido.pagar(dinheiro);
+
+        System.out.println("Pagamento em dinheiro aprovado: " + pagoDinheiro);
+        System.out.println("Situação: " + pedido.getSituacao());
+        System.out.println("Comprovante: " + pedido.getComprovante());
     }
 }
