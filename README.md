@@ -7,94 +7,88 @@
 
 | Nome | Papel na Aula 01 |
 |---|---|
-| _(Eliezer Beltrame)_ | Responsável do dia |
-| _(Gabriel Lima)_ | |
-
+| Eliezer Beltrame | Responsável do dia |
+| Gabriel Lima | |
 
 ## Descrição do desafio
 
-_(O desafio é desenvolver um sistema para gerenciar um e-commerce, permitindo o cadastro de produtos e clientes, a realização de pedidos e o processamento dos pagamentos.)_
+O projeto consiste no desenvolvimento de um sistema de gestão de pedidos para um e-commerce.
 
-## Funcionalidades previstas
+Ao longo das aulas, o sistema está sendo desenvolvido de forma incremental, começando pela criação das classes de domínio e evoluindo para relacionamentos entre classes, herança, encapsulamento e processamento polimórfico de pagamentos.
 
-- [ ] Cadastro e gerenciamento de produtos
-- [ ] Cadastro e gerenciamento de clientes
-- [ ] Criação e gerenciamento de pedidos
-- [ ] Processamento de pagamentos (cartão, boleto, Pix)
+## Funcionalidades
+
+- [x] Cadastro e gerenciamento de produtos
+- [x] Cadastro e gerenciamento de clientes
+- [x] Criação e gerenciamento de pedidos
+- [x] Relacionamento entre Pedido, Cliente, Produto e ItemPedido
+- [x] Hierarquia de formas de pagamento
+- [x] Processamento polimórfico de pagamentos
+- [x] Pagamento via Pix
+- [x] Pagamento via cartão de crédito
+- [x] Pagamento via boleto
+- [x] Pagamento em dinheiro
+- [ ] Tratamento de exceções
 - [ ] Testes automatizados (unitários e de integração)
 - [ ] Pipeline de CI/CD
 - [ ] API REST para consumo por um front-end
 
-## Divisão De Tarefas
--  Cadastro e gerenciamento de produtos [Gabriel]
--  Cadastro e gerenciamento de clientes [Eliezer]
--  Criação e gerenciamento de pedidos [Eliezer]
--  Processamento de pagamentos (cartão, boleto, Pix) [Gabriel]
--  Testes automatizados (unitários e de integração) [Gabriel]
--  Pipeline de CI/CD [Gabriel]
--  API REST para consumo por um front-end [Eliezer]
+## Divisão de Tarefas
 
+- Cadastro e gerenciamento de produtos [Gabriel]
+- Cadastro e gerenciamento de clientes [Eliezer]
+- Criação e gerenciamento de pedidos [Eliezer]
+- Processamento de pagamentos (cartão, boleto, Pix) [Gabriel]
+- Testes automatizados (unitários e de integração) [Gabriel]
+- Pipeline de CI/CD [Gabriel]
+- API REST para consumo por um front-end [Eliezer]
 
 ## Tecnologias
 
-
 - Java
 - Maven
-- Git / GitHub
-- _(demais tecnologias serão adicionadas ao longo do semestre: JUnit, Spring Boot, banco de
-  dados, GitHub Actions...)_
+- Git
+- GitHub
+- Programação Orientada a Objetos
+- BigDecimal
+- JUnit
+- Spring Boot
+- Banco de dados
+- GitHub Actions
+
+> Algumas tecnologias serão utilizadas nas próximas etapas do projeto.
 
 ## Estrutura de pastas
 
-```
-ecommerce-pedidos-NOMEDASQUAD/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/senai/ecommerce/
-│   │           ├── modelo/
-│   │           ├── servico/
-│   │           ├── repositorio/
-│   │           └── util/
-│   └── test/
-│       └── java/
-│           └── com/senai/ecommerce/
-├── pom.xml
-├── README.md
+```text
+ecommerce-pedidos-inova/
+├── back/
+│   ├── src/
+│   │   ├── main/
+│   │   │   └── java/
+│   │   │       └── com/
+│   │   │           └── inova/
+│   │   │               └── ecommerce/
+│   │   │                   ├── App.java
+│   │   │                   ├── AppConfig.java
+│   │   │                   ├── CalcEndpoint.java
+│   │   │                   └── modelo/
+│   │   │                       ├── Cliente.java
+│   │   │                       ├── Funcionario.java
+│   │   │                       ├── ItemPedido.java
+│   │   │                       ├── Pedido.java
+│   │   │                       ├── Pessoa.java
+│   │   │                       ├── Produto.java
+│   │   │                       ├── SituacaoDoPedido.java
+│   │   │                       └── pagamento/
+│   │   │                           ├── Boleto.java
+│   │   │                           ├── CartaoCredito.java
+│   │   │                           ├── Dinheiro.java
+│   │   │                           ├── FormaPagamento.java
+│   │   │                           ├── Pix.java
+│   │   │                           └── ProcessadorPagamento.java
+│   │   └── test/
+│   │       └── java/
+│   ├── pom.xml
+│   └── README.md
 └── .gitignore
-```
-
-## Como rodar o projeto
-
-_(Preencher a partir das próximas aulas, conforme o projeto evoluir.)_
-
-## Roadmap do projeto (por aula)
-
-| Aula | Entrega |
-|---|---|
-| 01 | Repositório criado, estruturado, com README e commit inicial |
-| 02 | Fluxo de branches e primeiro Pull Request revisado |
-| 03 | Classe utilitária (Utils) do domínio |
-| 04 | Classes de domínio inicial (Produto, Cliente, Pedido, ItemPedido) |
-| 05 | Encapsulamento e abstração aplicados |
-| 06 | Hierarquia de formas de pagamento (herança) |
-| 07 | Relacionamentos entre classes do domínio |
-| 08 | Módulo de pagamento polimórfico |
-| 09 | Tratamento de exceções |
-| 10 | Suíte de testes unitários |
-| 11 | Suíte de testes de integração + relatório de cobertura |
-| 12 | Persistência: conexão, Create e Read |
-| 13 | Persistência: Update, Delete e padrão DAO/Repository |
-| 14 | Migração para Spring Boot |
-| 15 | API REST + pipeline CI/CD |
-| 16 | Entrega final, documentação e apresentação |
-
-## Combinado da equipe (ética e convivência)
-
-1. _(Respeitar um ao outro)_
-2. _(Dividir as tarefas de forma justa)_
-3. _(Manter uma boa comunicação)_
-
-## Licença
-
-Projeto acadêmico — Faculdade de Tecnologia SENAI "Antonio Adolpho Lobbe".
