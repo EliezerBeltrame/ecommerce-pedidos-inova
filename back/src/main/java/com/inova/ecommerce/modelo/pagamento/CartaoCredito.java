@@ -47,16 +47,16 @@ public class CartaoCredito extends FormaPagamento implements ProcessadorPagament
         );
     }
 
-    @Override
-    public boolean processar(BigDecimal valor) {
+  @Override
+public boolean processar(BigDecimal valor) {
 
-        System.out.println(
-            "Autorizando cartão " + cartao +
-            " em " + parcelas + " parcelas."
-        );
+    System.out.println(
+        "Autorizando cartão " + cartao +
+        " em " + parcelas + " parcelas."
+    );
 
-        return true;
-    }
+    return valor.compareTo(this.valor) <= 0;
+}
 
     @Override
     public String getComprovante() {
