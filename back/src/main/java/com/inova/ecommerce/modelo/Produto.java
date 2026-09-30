@@ -1,5 +1,5 @@
 package com.inova.ecommerce.modelo;
-
+import com.inova.ecommerce.excecao.EstoqueInsuficienteException;
 import java.math.BigDecimal;
 
 public class Produto {
@@ -88,15 +88,22 @@ public class Produto {
         return ativo && quantidadeEmEstoque >= quantidadeDesejada;
     }
 
-    public void baixarEstoque(int quantidade) {
-        if (quantidade <= 0) {
-            throw new IllegalArgumentException("Quantidade a baixar deve ser positiva");
-        }
-        if (quantidade > quantidadeEmEstoque) {
-            throw new IllegalArgumentException("Estoque insuficiente. Disponível: " + quantidadeEmEstoque);
-        }
-        this.quantidadeEmEstoque -= quantidade;
+    public void baixarEstoque(int quantidade) throws EstoqueInsuficienteException {
+    if (quantidade <= 0) {
+        throw new IllegalArgumentException(
+            "Quantidade a baixar deve ser positiva"
+        );
     }
+
+    if (quantidade > quantidadeEmEstoque) {
+        throw new EstoqueInsuficienteException(
+            this,
+            quantidade
+        );
+    }
+
+    this.quantidadeEmEstoque -= quantidade;
+}
 
     @Override
     public String toString() {

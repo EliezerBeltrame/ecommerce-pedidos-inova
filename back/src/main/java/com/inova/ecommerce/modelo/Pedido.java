@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.inova.ecommerce.excecao.EstoqueInsuficienteException;
+import com.inova.ecommerce.excecao.PagamentoRecusadoException;
+import com.inova.ecommerce.excecao.PedidoInvalidoException;
 import com.inova.ecommerce.modelo.pagamento.FormaPagamento;
 import com.inova.ecommerce.modelo.pagamento.ProcessadorPagamento;
 
@@ -67,7 +70,10 @@ public class Pedido {
         return comprovante;
     }
 
-    public void adicionarItem(Produto produto, int quantidade) {
+    public void adicionarItem(
+            Produto produto,
+            int quantidade
+    ) throws EstoqueInsuficienteException {
 
         if (produto == null) {
             throw new IllegalArgumentException(
@@ -81,11 +87,7 @@ public class Pedido {
             );
         }
 
-        if (quantidade > produto.getQuantidadeEmEstoque()) {
-            throw new IllegalStateException(
-                "Estoque insuficiente: " + produto.getNome()
-            );
-        }
+      produto.baixarEstoque(quantidade);
 
         itens.add(
             new ItemPedido(
@@ -96,11 +98,16 @@ public class Pedido {
         );
     }
 
-    public void adicionarItem(Produto produto) {
+    public void adicionarItem(
+            Produto produto
+    ) throws EstoqueInsuficienteException {
+
         adicionarItem(produto, 1);
     }
 
-    public boolean pagar(ProcessadorPagamento processador) {
+    public boolean pagar(
+            ProcessadorPagamento processador
+    ) throws PedidoInvalidoException, PagamentoRecusadoException {
 
         if (processador == null) {
             throw new IllegalArgumentException(
@@ -109,8 +116,14 @@ public class Pedido {
         }
 
         if (itens.isEmpty()) {
-            throw new IllegalStateException(
+            throw new PedidoInvalidoException(
                 "Pedido sem itens não pode ser pago"
+            );
+        }
+
+        if (situacao == SituacaoDoPedido.PAGO) {
+            throw new PedidoInvalidoException(
+                "Pedido já foi pago"
             );
         }
 
@@ -118,12 +131,16 @@ public class Pedido {
             calcularValorTotal()
         );
 
-        if (aprovado) {
-            this.situacao = SituacaoDoPedido.PAGO;
-            this.comprovante = processador.getComprovante();
+        if (!aprovado) {
+            throw new PagamentoRecusadoException(
+                "Pagamento não foi aprovado"
+            );
         }
 
-        return aprovado;
+        this.situacao = SituacaoDoPedido.PAGO;
+        this.comprovante = processador.getComprovante();
+
+        return true;
     }
 
     public BigDecimal calcularValorTotal() {
