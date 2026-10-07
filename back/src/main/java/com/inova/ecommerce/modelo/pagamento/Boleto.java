@@ -26,10 +26,7 @@ public class Boleto extends FormaPagamento implements ProcessadorPagamento {
         this.vencimento = vencimento;
     }
 
-    @Override
-    public void pagar(double valor) {
-        System.out.println("Boleto de R$ " + valor + " gerado.");
-    }
+    
 
     @Override
     public boolean processar(BigDecimal valor) {
