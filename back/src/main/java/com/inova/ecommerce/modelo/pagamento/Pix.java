@@ -14,10 +14,6 @@ public class Pix extends FormaPagamento implements ProcessadorPagamento {
         this.chave = chave;
     }
 
-    @Override
-    public void pagar(double valor) {
-        System.out.println("Pagamento de R$ " + valor + " realizado via Pix.");
-    }
 
     @Override
     public boolean processar(BigDecimal valor) {

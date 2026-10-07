@@ -39,13 +39,7 @@ public class CartaoCredito extends FormaPagamento implements ProcessadorPagament
         this.parcelas = parcelas;
     }
 
-    @Override
-    public void pagar(double valor) {
-        System.out.println(
-            "Pagamento de R$ " + valor +
-            " realizado no cartão de crédito."
-        );
-    }
+
 
   @Override
 public boolean processar(BigDecimal valor) {
