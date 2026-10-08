@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7fb;
+  color: #17173a;
+}
+
+/* HEADER */
+
+.header-inova {
+  background-color: #11153f;
+  min-height: 78px;
+  padding: 14px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nome-inova {
+  color: white !important;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nome-inova span {
+  color: #8b45e8;
+}
+
+/* MENU */
+
+.menu-inova {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.link-menu {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.link-menu:hover {
+  color: white;
+  background-color: #25285c;
+}
+
+/* PÁGINA ATUAL */
+
+.link-menu::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: #8b45e8;
+  border-radius: 5px;
+  transform: translateX(-50%);
+}
+
+.link-menu.ativo::after {
+  width: 80%;
+}
+
+/* CONTEÚDO */
+
+.container {
+  max-width: 1200px;
+}
+
+h1 {
+  font-weight: bold;
+  color: #17173a;
+}
+
+h2 {
+  color: #17173a;
+}
+
+/* TÍTULO DOS PRODUTOS */
+
+.titulo-destaque {
+  color: #7434d5;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.titulo-produtos {
+  margin-top: 5px;
+  font-weight: bold;
+  color: #17173a;
+}
+
+.titulo-produtos span {
+  color: #7434d5;
+}
+
+.texto-produtos {
+  color: #666;
+}
+
+/* CARDS DOS PRODUTOS */
+
+.produto-card {
+  background-color: white;
+  border: 1px solid #e8e8f0;
+  border-radius: 12px;
+  padding: 22px;
+  height: 100%;
+  box-shadow: 0 3px 10px rgba(20, 20, 60, 0.06);
+}
+
+.produto-card h5 {
+  color: #17173a;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.produto-descricao {
+  color: #666;
+  min-height: 45px;
+}
+
+.produto-preco {
+  color: #6d28d9;
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.produto-estoque {
+  color: #168447;
+  font-size: 14px;
+}
+
+/* BOTÃO */
+
+.btn-inova {
+  display: block;
+  width: 100%;
+  background-color: #7434d5 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 7px;
+  padding: 11px 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.btn-inova:hover {
+  background-color: #5d25b7 !important;
+  color: white !important;
+}
+
+.btn-inova:active {
+  background-color: #4d1f96 !important;
+  color: white !important;
+}
+
+.btn-inova:disabled {
+  background-color: #999 !important;
+  color: white !important;
+  cursor: not-allowed;
+}
+
+/* FORMULÁRIOS */
+
+.form-control {
+  border-radius: 7px;
+}
+
+.form-control:focus {
+  border-color: #7434d5;
+  box-shadow: 0 0 0 0.15rem rgba(116, 52, 213, 0.15);
+}
+
+/* CARDS GERAIS */
+
+.card {
+  border: 1px solid #e8e8f0;
+  border-radius: 10px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+
+  .header-inova {
+    padding: 12px 0;
+  }
+
+  .nome-inova {
+    font-size: 25px;
+  }
+
+  .menu-inova {
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .link-menu {
+    font-size: 13px;
+    padding: 8px 9px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .menu-inova {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .link-menu {
+    font-size: 12px;
+    padding: 7px 8px;
+  }
+}

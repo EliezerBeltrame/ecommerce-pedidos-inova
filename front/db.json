@@ -1,0 +1,55 @@
+{
+  "produtos": [
+    {
+      "nome": "Teclado Mecânico",
+      "descricao": "Teclado Mecânico",
+      "preco": 0.1,
+      "estoque": 10,
+      "id": "0YxHu0IwY4w"
+    },
+    {
+      "nome": "mouse ",
+      "descricao": "gamer ",
+      "preco": 100,
+      "estoque": 12,
+      "id": "TZ0lthsCB8A"
+    },
+    {
+      "nome": "monitor tridimencional",
+      "descricao": "brabo",
+      "preco": 1000000,
+      "estoque": 1,
+      "id": "MaivFAhdjBQ"
+    }
+  ],
+  "clientes": [
+    {
+      "nome": "beltrame ",
+      "email": "beltrame@bigode",
+      "id": "mNVKmfHGzkc"
+    }
+  ],
+  "pedidos": [
+    {
+      "cliente": {
+        "nome": "eliezer Santos",
+        "email": "eliezer.santos.tds24@gmail.com"
+      },
+      "endereco": "av ",
+      "itens": [
+        {
+          "nome": "Teclado Mecânico",
+          "descricao": "Teclado Mecânico",
+          "preco": 0.1,
+          "estoque": 10,
+          "id": "0YxHu0IwY4w",
+          "quantidade": 28
+        }
+      ],
+      "total": 2.8000000000000003,
+      "status": "Recebido",
+      "id": "xVGsyNX5OiA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
